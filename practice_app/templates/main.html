@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block contents %}
+<body>
+<div class="container">
+{% for Writing in posts %}
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    
+    <h5 class="card-title"> 제목: {{Writing.title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">작성날짜: {{Writing.pub_date}}</h6>
+    <p class="card-text">본문: {{Writing.summary}} </p>
+    <a href="{%url 'more' Writing.id %}" class="card-link">more...</a>
+  
+  </div>
+</div>
+<br>
+
+{% endfor %}
+{% if posts.has_previous%}
+<a class="btn btn-outline-secondary" href="?page=1" role="button">First</a>
+<a href="?page={{posts.previous_page_number}}" class="btn btn-outline-secondary" role="button">Previous</a>
+{%endif%}
+<button type="button" class="btn btn-secondary"><span>{{posts.number}}</span>
+of {{posts.paginator.num_pages}}</span></button>
+{% if posts.has_next%}
+<a class="btn btn-outline-secondary" href="?page={{posts.next_page_number}}">Next</a>
+<a class="btn btn-outline-secondary" href="?page={{posts.paginator.num_pages}}">Last</a>
+{% endif %}
+</div>
+</body>
+
+{% endblock %}
