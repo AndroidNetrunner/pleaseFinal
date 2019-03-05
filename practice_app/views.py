@@ -13,7 +13,7 @@ def main(request):
     paginator = Paginator(songs_list, 3)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
-    return render(request,'main.html',{'writings': songs, 'posts':posts})
+    return render(request,'main.html',{'writings': songs, 'posts':posts, } )
 # Create your views here.
 
 def more(request,song_id):
